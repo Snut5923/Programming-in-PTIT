@@ -1,0 +1,11 @@
+# import numpy as np
+# A = np.array([[1,3],[5,7]])
+# B = np.array([[4,-6],[-8,12]])
+# detA = np.linalg.det(A)
+# Ainv = np.linalg.inv(A)
+# detB = np.linalg.det(B)
+# print("DET A=",detA)
+# print("Ainv=",Ainv)
+# print("DET B=",detB)
+print("{:.2f}".format(3.14625))
+print("MD{:03d}".format(10))
