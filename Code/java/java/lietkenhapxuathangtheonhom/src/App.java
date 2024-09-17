@@ -1,0 +1,66 @@
+import java.util.*;
+public class App {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int t = Integer.parseInt(sc.nextLine());
+        ArrayList<hang> kq = new ArrayList<>();
+        while(t-->0){
+            kq.add(new hang(sc.nextLine(), sc.nextLine()));
+        }
+        Collections.sort(kq);
+        String s = sc.nextLine();
+        for(hang x : kq){
+            if(s.equals(x.getma())) System.out.println(x);
+        }
+    }
+}
+class hang implements Comparable<hang>{
+    private String ma;
+    private double nhap;
+    public hang(String ma,String nhap){
+        this.ma = ma;
+        this.nhap = Double.parseDouble(nhap);
+    }
+    public long xuat(){
+        if(ma.charAt(0)=='A') return Math.round(nhap*60/100);
+        return Math.round(nhap*70/100);
+    }
+    public long dongia(){
+        if(ma.charAt(ma.length()-1)=='Y') return 110000;
+        return 135000;
+    }
+    public long tien(){
+        return xuat()*dongia();
+    }
+    public double thue(){
+        if(ma.charAt(0)=='A'){
+            if(ma.charAt(ma.length()-1)=='Y') return tien()*8/100;
+            return tien()*11/100;
+        }
+        else{
+            if(ma.charAt(ma.length()-1)=='Y') return tien()*17/100;
+            return tien()*22/100;
+        }
+    }
+    public String getma(){
+        return ""+ma.charAt(0);
+    }
+    @Override
+    public String toString(){
+        return ma+" "+String.format("%.0f",nhap)+" "+xuat()+" "+dongia()+" "+tien()+" "+String.format("%.0f",thue());
+    }
+    @Override
+    public int compareTo(hang x){
+        if(x.thue() > thue() ) return 1;
+        return -1;
+    }
+
+}
+// 3
+// A001Y
+// 1000
+// B012N
+// 2500
+// B003Y
+// 4582
+// B
